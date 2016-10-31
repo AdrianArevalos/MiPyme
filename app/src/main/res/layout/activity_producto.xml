@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_producto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="36dp"
+    android:background="@drawable/theme1"
+    tools:context="inge2.mipyme.ActividadProducto">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Producto"
+        android:gravity="center"
+        android:textSize="40sp"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"/>
+
+    <Spinner
+        android:id="@+id/p_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/selector_item_2"></Spinner>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="139dp"
+            android:layout_height="wrap_content"
+            android:text="Precio Unitario:"
+            android:gravity="left"
+            android:textSize="16sp"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/precio_unitario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="0 Gs"
+            android:gravity="right"
+            android:textSize="20sp"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cantidad"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"/>
+
+    <Spinner
+        android:id="@+id/cantidad"
+        android:layout_width="113dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginTop="10sp"
+        android:background="@drawable/spinner_selector">
+    </Spinner>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="139dp"
+            android:layout_height="wrap_content"
+            android:text="Total:"
+            android:gravity="left"
+            android:textSize="16sp"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/total"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="0 Gs"
+            android:gravity="right"
+            android:textSize="20sp"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp" >
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/p_registrar"
+            android:layout_weight="5"
+            android:text="Registrar"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginRight="10dp"
+            android:backgroundTint="@android:color/white"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/p_siguiente"
+            android:layout_weight="5"
+            android:text="Siguiente"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:backgroundTint="@android:color/white"
+            />
+    </LinearLayout>
+
+</LinearLayout>
+
