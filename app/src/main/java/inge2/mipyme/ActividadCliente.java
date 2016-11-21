@@ -19,7 +19,6 @@ import java.util.List;
 import objetos.Cliente;
 
 public class ActividadCliente extends AppCompatActivity implements View.OnClickListener {
-
     private Spinner spinner;
     private TextView tv_direccion, tv_telefono;
     private List<Cliente> clientes;
@@ -40,7 +39,7 @@ public class ActividadCliente extends AppCompatActivity implements View.OnClickL
         clientes = cargar_lista_clientes();
         List<String> clientes1 = new ArrayList<String>();
         for (int i = 0; i < clientes.size(); i++){
-            clientes1.add(clientes.get(i).getCedula() + ", " +clientes.get(i).getNombre() + " " + clientes.get(i).getApellido());
+            clientes1.add(clientes.get(i).getApellido() + " " +  clientes.get(i).getNombre());
         }
 
         ArrayAdapter<String> arrayAdapter= new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line, clientes1);
@@ -50,9 +49,14 @@ public class ActividadCliente extends AppCompatActivity implements View.OnClickL
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(ActividadCliente.this, String.valueOf(spinner.getSelectedItem()), Toast.LENGTH_SHORT).show();
-                tv_direccion.setText(clientes.get(spinner.getSelectedItemPosition()).getDireccion());
-                tv_telefono.setText(clientes.get(spinner.getSelectedItemPosition()).getTelefono());
+                if(spinner.getSelectedItemPosition() != 0){
+                    tv_direccion.setText(clientes.get(spinner.getSelectedItemPosition()).getDireccion());
+                    tv_telefono.setText(clientes.get(spinner.getSelectedItemPosition()).getTelefono());
+                }else{
+                    tv_direccion.setText("");
+                    tv_telefono.setText("");
+                }
+
             }
 
             @Override
@@ -65,10 +69,14 @@ public class ActividadCliente extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.btn_sigte){
-            Intent intent = new Intent(this, ActividadProducto.class);
-            cedula_cliente = clientes.get(spinner.getSelectedItemPosition()).getCedula();
-            intent.putExtra("CedulaCliente",cedula_cliente);
-            startActivity(intent);
+            if(spinner.getSelectedItemPosition() != 0){
+                Intent intent = new Intent(this, ActividadProducto.class);
+                cedula_cliente = clientes.get(spinner.getSelectedItemPosition()).getCedula();
+                intent.putExtra("CedulaCliente",cedula_cliente);
+                startActivity(intent);
+            }else{
+                Toast.makeText(this, "Seleccione un cliente", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

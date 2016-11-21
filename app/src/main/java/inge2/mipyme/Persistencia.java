@@ -42,7 +42,6 @@ public class Persistencia extends SQLiteOpenHelper {
 
     }
 
-
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("drop table if exists Usuario");
@@ -52,12 +51,10 @@ public class Persistencia extends SQLiteOpenHelper {
 
     private void cargar_productos(SQLiteDatabase db) {
         List<Producto> productos = new ArrayList<Producto>();
-        Producto pro1 = new Producto(1,"Coca Cola 500cc", 5000);
-        Producto pro2 = new Producto(2,"Yerba Kurupi 500g", 10000);
-        Producto pro3 = new Producto(3,"Arroz Primicia 1Kg", 6000);
-        productos.add(pro1);
-        productos.add(pro2);
-        productos.add(pro3);
+        productos.add(new Producto(0,"Seleccione un producto",0));
+        productos.add(new Producto(1,"Coca Cola 500cc", 5000));
+        productos.add(new Producto(2,"Yerba Kurupi 500g", 10000));
+        productos.add(new Producto(3,"Arroz Primicia 1Kg", 6000));
         productos.add(new Producto(4,"Pepsi 2L",10000));
         productos.add(new Producto(5,"Coca Cola 2L",10000));
         productos.add(new Producto(6,"Nescafe 500g", 20000));
@@ -80,12 +77,10 @@ public class Persistencia extends SQLiteOpenHelper {
 
     private void cargar_clientes(SQLiteDatabase db) {
         ArrayList<Cliente> clientes = new ArrayList<Cliente>();
-        Cliente cli1 = new Cliente(1234567,"Juan","Perez","Azara 2300 c/ Iturbe","021442244");
-        Cliente cli2 = new Cliente(7654321,"Maria","Ramos","Colon 320 c/ Azara","021123456");
-        Cliente cli3 = new Cliente(3214567,"Luis","Lopez","Mcal Lopez 1234","0981234567");
-        clientes.add(cli1);
-        clientes.add(cli2);
-        clientes.add(cli3);
+        clientes.add(new Cliente(0,"Seleccione un Cliente","","",""));
+        clientes.add(new Cliente(1234567,"Juan","Perez","Azara 2300 c/ Iturbe","021442244"));
+        clientes.add(new Cliente(7654321,"Maria","Ramos","Colon 320 c/ Azara","021123456"));
+        clientes.add(new Cliente(3214567,"Luis","Lopez","Mcal Lopez 1234","0981234567"));
         clientes.add(new Cliente(4364746,"Bryan","Arevalos","Mcal Lopez 999 c/ Del Carmen","0981234345"));
         clientes.add(new Cliente(7168577,"Andres","Vega","Iturbe 122 c/ Herrera","0985984081"));
 
