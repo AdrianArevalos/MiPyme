@@ -23,7 +23,6 @@ public class ActividadListarProductos extends AppCompatActivity implements View.
 
     private ListView listView;
     private TextView tv_total;
-    private Button btn_atras;
     private Button btn_finalizar;
     private int monto_total;
     private int cedula_cliente;
@@ -72,6 +71,7 @@ public class ActividadListarProductos extends AppCompatActivity implements View.
     public void onClick(View v) {
         if(v.getId() == R.id.btn_finalizar){
             if(altaPedido(id_pedido)){
+                actualizar_cantidad_producto();
                 Toast.makeText(this,"Transaccion Finalizada",Toast.LENGTH_SHORT).show();
                 id_pedido++;
                 Intent intent = new Intent(getBaseContext(), MainActivity.class);
@@ -116,5 +116,29 @@ public class ActividadListarProductos extends AppCompatActivity implements View.
 
         }
         bd.close();
+    }
+
+    private void actualizar_cantidad_producto(){
+        Persistencia persistencia = new Persistencia(this, "Administrador", null, 1);
+        SQLiteDatabase bd = persistencia.getWritableDatabase();
+        try{
+            //traer de la bd la cantidad y hacer la diferencia con la cantidad de productos que se compro
+            for(int i = 0; i < listado.size(); i++){
+                Cursor fila = bd.rawQuery("select cantidad from Producto where id_producto = " + listado.get(i).getId_producto(), null);
+                if(fila.moveToFirst()){
+                    ContentValues registro = new ContentValues();
+                    registro.put("id_producto", listado.get(i).getId_producto());
+                    registro.put("descripcion", listado.get(i).getDescripcion());
+                    registro.put("precio_unitario", listado.get(i).getPrecio_unitario());
+                    registro.put("cantidad", (fila.getInt(0) - listado.get(i).getCantidad()) );
+
+                    bd.update("Producto", registro, "id_producto = " + listado.get(i).getId_producto(), null);
+                }
+            }
+            bd.close();
+
+        }catch (Exception e){
+
+        }
     }
 }
